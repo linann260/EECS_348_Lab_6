@@ -7,18 +7,18 @@
 #include <fstream>
 
 using namespace std;
-static const int max = 10;
-int matrix_A = [max][max];
-int matrix_B = [max][max];
+static const int max1 = 10;
+int matrix_A[max1][max1];
+int matrix_B[max1][max1];
 int size;
 
-void read_file(int A[10][10], int B[10][10]){
+void read_file(){
     int n;
     ifstream input_file;
     input_file.open("matrix_input.txt");
     input_file >> n;
 
-    int size = n;
+    size = n;
 
     for (int i = 0; i < n ; i++){
         for (int j = 0; j < n; j ++){
@@ -32,7 +32,7 @@ void read_file(int A[10][10], int B[10][10]){
     }
 }
 
-void print_matrix(int A[10][10], int B[10][10]){
+void print_matrix(){
     cout << "Anna Lin\n";
     cout << "Lab #6: Matrix Manipulation\n\n";
     cout << "Matrix A:\n";
@@ -42,6 +42,7 @@ void print_matrix(int A[10][10], int B[10][10]){
         }
         cout << "\n";
     }
+    cout << "\n";
 
     cout << "Matrix B:\n";
     for (int i = 0; i < size; i++){
@@ -50,9 +51,10 @@ void print_matrix(int A[10][10], int B[10][10]){
         }
         cout << "\n";
     }
+    cout << "\n";
 }
 
-void matrix_addition(int A[10][10], int B[10][10]){
+void matrix_addition(){
     int matrix_sum[size][size];
     for (int i = 0; i < size; i++){
         for (int j = 0; j < size; j++){
@@ -63,30 +65,37 @@ void matrix_addition(int A[10][10], int B[10][10]){
     cout << "Matrix Sum (A + B):\n";
     for (int i = 0; i < size; i++){
         for (int j = 0; j < size; j++){
-            cout << matrix_sum[i][j] << " ";
+            cout.width(2);
+            cout << right << matrix_sum[i][j] << " ";
         }
         cout << "\n";
     }
+    cout << "\n";
 }
 
-void matrix_multiplication(int A[10][10], int B[10][10]){
+void matrix_multiplication(){
     int matrix_product[size][size];
     for (int i = 0; i < size; i++){
         for (int j = 0; j < size; j++){
-            matrix_product[i][j] = matrix_A[i][j] + matrix_B[i][j];
+            matrix_product[i][j] = 0;
+            for (int k = 0; k < size; k++){
+                matrix_product[i][j] += matrix_A[i][k] * matrix_B[k][j];
+            }
         }
     }
 
     cout << "Matrix Product (A * B):\n";
     for (int i = 0; i < size; i++){
         for (int j = 0; j < size; j++){
-            cout << matrix_product[i][j] << " ";
+            cout.width(3);
+            cout << right << matrix_product[i][j] << " ";
         }
         cout << "\n";
     }
+    cout << "\n";
 }
 
-void matrix_subtraction(int A[10][10], int B[10][10]){
+void matrix_subtraction(){
     int matrix_difference[size][size];
     for (int i = 0; i < size; i++){
         for (int j = 0; j < size; j++){
@@ -101,12 +110,13 @@ void matrix_subtraction(int A[10][10], int B[10][10]){
         }
         cout << "\n";
     }
+    cout << "\n";
 }
 int main(){
-    read_file(matrix_A, matrix_B);
-    print_matrix(matrix_A, matrix_B);
-    matrix_addition(matrix_A, matrix_B);
-    matrix_multiplication(matrix_A, matrix_B);
-    matrix_subtraction(matrix_A, matrix_B);
+    read_file();
+    print_matrix();
+    matrix_addition();
+    matrix_multiplication();
+    matrix_subtraction();
     return 0;
 }
