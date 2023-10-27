@@ -11,7 +11,7 @@ using namespace std;
 static const int max1 = 10; //constant value for size of empty matrix
 int matrix_A[max1][max1]; //empty matrix A
 int matrix_B[max1][max1]; //empty matrix B
-int size; //actual size of matrix
+int matrix_size; //actual size of matrix
 
 void read_file(){
     //Reads matrix data from a file and stores it in a 2D array.
@@ -21,7 +21,7 @@ void read_file(){
     input_file.open("matrix_input.txt"); //opens input file
     input_file >> n; //sets the first line of file to n
 
-    size = n; //sets the actual size of matrix to n
+    matrix_size = n; //sets the actual size of matrix to n
 
     //Iterates through first half of the file and stores it into matrix A.
     for (int i = 0; i < n ; i++){
@@ -45,8 +45,8 @@ void print_matrix(){
     cout << "Matrix A:\n";
     
     //Prints matrix A.
-    for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; j++){
+    for (int i = 0; i < matrix_size; i++){
+        for (int j = 0; j < matrix_size; j++){
             cout << matrix_A[i][j] << " ";
         }
         cout << "\n";
@@ -56,8 +56,8 @@ void print_matrix(){
     cout << "Matrix B:\n";
 
     //Prints matrix B.
-    for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; j++){
+    for (int i = 0; i < matrix_size; i++){
+        for (int j = 0; j < matrix_size; j++){
             cout << matrix_B[i][j] << " ";
         }
         cout << "\n";
@@ -68,19 +68,19 @@ void print_matrix(){
 void matrix_addition(){
     //Adds two matrices, stores the sum in a new array, and prints the sum of the matrices.
     
-    int matrix_sum[size][size]; //empty matrix
+    int matrix_sum[matrix_size][matrix_size]; //empty matrix
 
     //Performs matrix addition and stores elements in matrix_sum.
-    for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; j++){
+    for (int i = 0; i < matrix_size; i++){
+        for (int j = 0; j < matrix_size; j++){
             matrix_sum[i][j] = matrix_A[i][j] + matrix_B[i][j];
         }
     }
     
     //Prints sum of matrices.
     cout << "Matrix Sum (A + B):\n";
-    for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; j++){
+    for (int i = 0; i < matrix_size; i++){
+        for (int j = 0; j < matrix_size; j++){
             cout.width(2);
             cout << right << matrix_sum[i][j] << " "; //right aligned
         }
@@ -92,13 +92,13 @@ void matrix_addition(){
 void matrix_multiplication(){
     //Multiples two matrices, stores the product in a new array, and prints the product of the matrices.
 
-    int matrix_product[size][size]; //empty matrix
+    int matrix_product[matrix_size][matrix_size]; //empty matrix
     
     //Performs matrix multiplication and stores elements in matrix_product.
-    for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; j++){
+    for (int i = 0; i < matrix_size; i++){
+        for (int j = 0; j < matrix_size; j++){
             matrix_product[i][j] = 0;
-            for (int k = 0; k < size; k++){
+            for (int k = 0; k < matrix_size; k++){
                 matrix_product[i][j] += matrix_A[i][k] * matrix_B[k][j]; //dot product
             }
         }
@@ -106,8 +106,8 @@ void matrix_multiplication(){
 
     //Prints product of matrices.
     cout << "Matrix Product (A * B):\n";
-    for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; j++){
+    for (int i = 0; i < matrix_size; i++){
+        for (int j = 0; j < matrix_size; j++){
             cout.width(3);
             cout << right << matrix_product[i][j] << " "; //right aligned
         }
@@ -119,19 +119,19 @@ void matrix_multiplication(){
 void matrix_subtraction(){
     //Subtracts two matrices, stores the difference in a new array, and prints the difference of the matrices.
 
-    int matrix_difference[size][size]; //empty matrix
+    int matrix_difference[matrix_size][matrix_size]; //empty matrix
 
     //Performs matrix subtraction and stores elements in matrix_difference.
-    for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; j++){
+    for (int i = 0; i < matrix_size; i++){
+        for (int j = 0; j < matrix_size; j++){
             matrix_difference[i][j] = matrix_A[i][j] - matrix_B[i][j];
         }
     }
 
     //Prints the difference of matrices.
     cout << "Matrix Difference (A - B):\n";
-    for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; j++){
+    for (int i = 0; i < matrix_size; i++){
+        for (int j = 0; j < matrix_size; j++){
             cout << matrix_difference[i][j] << " ";
         }
         cout << "\n";
